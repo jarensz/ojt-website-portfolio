@@ -1,0 +1,142 @@
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 940px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* LEFT COLUMN STACK */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* REUSE HOME CARD STYLE */
+.profileCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid rgba(16,24,40,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.06);
+  transition:
+    background-color var(--transition-duration) var(--transition-ease),
+    box-shadow var(--transition-duration) var(--transition-ease),
+    transform var(--transition-duration) var(--transition-ease);
+}
+
+.profileCard:hover {
+  box-shadow: 0 12px 36px rgba(2,6,23,0.10);
+  transform: translateY(-2px);
+}
+
+.media {
+  height: 360px;
+  overflow: hidden;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileIntroduction {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.name {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.introductionText {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.infoItem {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* CV / CTA button */
+.readMore {
+  margin-top: 0.75rem;
+  display: inline-block;
+  width: fit-content;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-duration) var(--transition-ease),
+              border-color var(--transition-duration) var(--transition-ease);
+}
+
+.readMore:hover {
+  border-color: currentColor;
+}
+
+/*CAROUSEL*/
+.carouselCard {
+  min-height: 33.1em; /* visually dominant */
+}
+
+.carouselCard .media {
+  height: 370px; /* ideal for landscape images */
+}
+
+.carouselCard .profileIntroduction {
+  flex: 1;
+}
+
+.carouselBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 51%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+  transition: background-color var(--transition-duration) var(--transition-ease);
+}
+
+.carouselBtn:hover {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.prev {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+/* ensure media can position buttons */
+.media {
+  position: relative;
+}

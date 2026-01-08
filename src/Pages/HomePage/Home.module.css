@@ -1,0 +1,145 @@
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 25em 1fr; /* first card fixed 36em, second fills rest */
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Small screens: stack cards vertically and let them be fluid */
+@media (max-width: 940px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    max-width: 940px;
+    padding: 1rem;
+  }
+}
+
+.profileCard {
+  width: auto;
+  height: 34.5em;
+  display: flex;
+  flex-direction: column;
+
+  /* use background-color (not 'background') so transitions animate reliably */
+  background-color: var(--card-bg);
+  color: var(--text);
+
+  /* use CSS variables for border so they animate too */
+  border: var(--card-border-width, 1px) solid var(--card-border, rgba(16,24,40,0.08));
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  /* explicitly transition the properties that change when theme swaps */
+  transition:
+    background-color var(--transition-duration) var(--transition-ease),
+    color var(--transition-duration) var(--transition-ease),
+    border-color var(--transition-duration) var(--transition-ease),
+    box-shadow var(--transition-duration) var(--transition-ease),
+    transform var(--transition-duration) var(--transition-ease);
+
+  box-shadow: var(--card-shadow, 0 6px 20px rgba(2,6,23,0.06));
+  min-width: 0;
+}
+
+/* IMAGE CONTAINER: fixed height to match old look */
+.media {
+  height: 350px;    /* preserves the image height you used earlier */
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent 60%);
+}
+
+/* profile image: fill the media area */
+.profileImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--transition-duration) var(--transition-ease);
+}
+
+/* TEXT AREA: fixed height to fill remaining vertical space; hide scrollbar visually */
+.profileIntroduction {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  /* fixed size to match the card's remaining space */
+  height: calc(30em - 270px); /* card height minus image height */
+  box-sizing: border-box;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
+
+  /* hide scrollbar visually but keep functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.profileIntroduction::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/* keep hover lift and image scale */
+.profileCard:hover {
+  box-shadow: 0 12px 36px rgba(2,6,23,0.10);
+  transform: translateY(-2px);
+}
+.profileCard:hover .profileImage {
+  transform: scale(1.03);
+}
+
+/* name and intro text */
+.name {
+  margin: 0;
+  font-size: 1.17rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.introductionText {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--muted);
+  text-align: left;
+}
+
+/* call-to-action row */
+.ctaRow {
+  margin-top: 0.4rem;
+}
+
+/* Read more link: uses accent color only (no background) */
+.readMore {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: color var(--transition-duration) var(--transition-ease),
+              border-color var(--transition-duration) var(--transition-ease);
+}
+.readMore:hover,
+.readMore:focus {
+  color: color-mix(in srgb, var(--accent) 85%, var(--text));
+  border-color: currentColor;
+  outline: none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-duration: 0ms;
+  }
+  .profileImage,
+  .profileCard {
+    transition: none !important;
+  }
+}

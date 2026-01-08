@@ -1,0 +1,99 @@
+.portfolioFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 12px 18px;
+  margin: 18px;
+  border-radius: 8px;
+
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: var(--card-border-width, 1px)
+    solid var(--card-border, rgba(16,24,40,0.08));
+
+  transition:
+    background-color var(--transition-duration) var(--transition-ease),
+    color var(--transition-duration) var(--transition-ease),
+    border-color var(--transition-duration) var(--transition-ease);
+}
+
+
+
+
+/* left side (copyright) */
+.left {
+  flex: 1 1 auto;
+  text-align: left;
+}
+
+.copy {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* right side (icons) */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-self: end;
+}
+
+/* each anchor around an icon */
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+  text-decoration: none;
+  background: transparent; /* don't animate background */
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+/* visible focus ring for keyboard users */
+.iconLink:focus {
+  outline: 3px solid color-mix(in srgb, var(--accent) 60%, transparent);
+  outline-offset: 3px;
+}
+
+/* icon image sizing - "just enough" */
+.iconLink img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  pointer-events: none; /* anchor handles clicks */
+}
+
+/* hover / active micro-interaction */
+.iconLink:hover {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+}
+
+/* reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .iconLink,
+  .portfolioFooter {
+    transition: none !important;
+  }
+  .iconLink:hover {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* responsive: keep layout tidy on small screens */
+@media (max-width: 520px) {
+  .portfolioFooter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .left { text-align: center; }
+  .right { justify-content: center; }
+}

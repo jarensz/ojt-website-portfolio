@@ -1,0 +1,117 @@
+/* 1) reset default margins and set sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2) remove browser default margins on page */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 3) ensure root fills full viewport and no extra gap from body */
+#root {
+  min-height: 100vh; /* ensure it fills the screen */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4) reset heading & paragraph default margins that often look like spacing */
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+  padding: 0;
+}
+
+/* 5) if you have header + main + footer layout, make main flexible */
+main {
+  flex: 1 1 auto;
+}
+
+/* 6) remove mobile safe-area inset extra padding if present */
+body {
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+
+/* theme variables & fallback */
+:root {
+  --bg: #ffffff;
+  --card-bg: #ffffff;
+  --text: #111111;
+  --muted: #888888;
+  --accent: #646cffaa;
+  --transition-duration: 900ms;
+  --transition-ease: cubic-bezier(.2,.9,.2,1);
+}
+
+/* accept .dark on html, body, or #root */
+html.dark,
+body.dark,
+#root.dark,
+.dark {
+  --bg: #0b0b0d;
+  --card-bg: #0f1724;
+  --text: #e6eef8;
+  --muted: #9aa6b2;
+  --accent: #444cffaa;
+}
+
+/* ensure main containers use the variables */
+html, body, #root {
+  background-color: var(--bg);
+  color: var(--text);
+  transition:
+    background-color var(--transition-duration) var(--transition-ease),
+    color var(--transition-duration) var(--transition-ease);
+  margin: 0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+}
+
+/* Apply card background to common containers (cards, main, sections) */
+main, .app, .container, .card, .portfolio-card, section {
+  background-color: var(--bg); /* or var(--card-bg) for card components */
+  color: var(--text);
+  transition:
+    background-color var(--transition-duration) var(--transition-ease),
+    color var(--transition-duration) var(--transition-ease);
+}
+
+/* Prefer card-bg for header / card elements */
+header, .card, .portfolioHeader {
+  background-color: var(--card-bg);
+}
+
+/* Links should animate color only (not background) */
+a, button {
+  color: var(--text);
+  transition: color var(--transition-duration) var(--transition-ease),
+              border-color var(--transition-duration) var(--transition-ease);
+}
+
+/* If you have buttons or nav items with explicit background colors, replace them with variables.
+   Example:
+   .btn { background-color: var(--card-bg); border-color: rgba(...); }
+*/
+
+/* reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  :root { --transition-duration: 0ms; }
+  * { transition: none !important; animation: none !important; }
+}
+
+/* target active NavLink by aria attribute */
+a[aria-current="page"] {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* if you use a class 'active' on NavLink */
+a.active {
+  color: inherit;
+  text-decoration: none;
+}
+

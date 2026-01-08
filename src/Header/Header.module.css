@@ -1,0 +1,203 @@
+.portfolioHeader {
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  transition:
+    background-color var(--transition-duration) var(--transition-ease),
+    color var(--transition-duration) var(--transition-ease),
+    box-shadow var(--transition-duration) var(--transition-ease),
+    border-color var(--transition-duration) var(--transition-ease);
+}
+
+/* optional darker card shadow when .dark is present on root */
+.dark .portfolioHeader {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+/* left side */
+.left {
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.subtitle {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(0,0,0,0.6);
+}
+
+/* right side layout */
+.right {
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
+
+/* nav */
+.navList {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:12px;
+}
+.navLink {
+  text-decoration: none;
+  color: var(--text);
+  transition: color var(--transition-duration) var(--transition-ease);
+}
+.navLink:hover {
+  color: var(--accent);
+}
+
+/* Header.module.css */
+.activeNavLink {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+
+/* --- Slider + icon knob styles for Header.module.css --- */
+
+/* switch wrapper */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 32px;
+  margin-left: 8px;
+  background: transparent;
+}
+
+/* full-size invisible checkbox for accessibility */
+.switch input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* track (background) */
+.slider {
+  position: absolute;
+  inset: 0;
+  background-color: #ffe789;
+  border-radius: 999px;
+  transition: background-color var(--transition-duration) var(--transition-ease),
+              box-shadow var(--transition-duration) var(--transition-ease);
+  display: block;
+}
+
+/* knob: uses flexbox to center icons */
+/* knob: center content reliably */
+.knob {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;           /* ensure padding doesn't grow the box */
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;                    /* <-- prevents inline SVG baseline offset */
+  padding: 0;                        /* no extra space around icon */
+  margin: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  transition: transform var(--transition-duration) var(--transition-ease),
+              box-shadow var(--transition-duration) var(--transition-ease),
+              background-color var(--transition-duration) var(--transition-ease);
+  z-index: 1;
+}
+
+/* icon base style (applies to SVG component or <img>) */
+.icon {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  pointer-events: none;
+  transition: opacity 180ms var(--transition-ease),
+              transform 180ms var(--transition-ease);
+
+}
+
+/* if your SVGs still appear off, try forcing the viewBox-fit */
+.icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* color for SVGs that use currentColor (you can use theme vars) */
+.iconSun { color: #f59e0b; }   /* sun tint */
+.iconMoon { color: #111827; }  /* moon tint */
+
+/* initial visibility: sun on, moon off */
+.iconSun {
+  opacity: 1;
+  transform: scale(1);
+}
+.iconMoon {
+  opacity: 0;
+  transform: scale(1);
+}
+
+/* checked: track, knob move, icon swap */
+.switch input:checked + .slider {
+  background-color: var(--accent);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+.switch input:checked + .slider .knob {
+  transform: translateX(24px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+/* icon toggle animations */
+.switch input:checked + .slider .iconSun {
+  opacity: 0;
+  transform: scale(0.8);
+}
+.switch input:checked + .slider .iconMoon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* focus ring for keyboard users */
+.switch input:focus + .slider .knob {
+  outline: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+  outline-offset: 2px;
+}
+
+/* keep track rounded */
+.round {
+  border-radius: 999px;
+}
+
+/* respects reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .knob, .slider, .icon {
+    transition: none !important;
+  }
+}
