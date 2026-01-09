@@ -92,13 +92,13 @@ function Contact() {
           </p>
 
           <p className={styles.infoItem}>
-            <strong>Contact No:</strong> 09XXXXXXXXX
+            <strong>Contact No:</strong> 0991-558-2745
           </p>
 
           {/* LINKS */}
           <div className={styles.links}>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/jarensz"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.readMore}
@@ -107,7 +107,7 @@ function Contact() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/jandel-clarrence-d-sacdalan-644a70393/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.readMore}

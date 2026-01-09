@@ -1,7 +1,7 @@
 import styles from "./Home.module.css";
 import { Link, NavLink } from "react-router-dom";
-import pfp from "../../assets/images/anaxaProfile.jpg";
-import bg from "../../assets/images/cyreneBackground.jpg";
+import pfp from "../../assets/images/jandelProfile.jpg";
+import bg from "../../assets/images/olfuBackground.jpg";
 
 export default function Home() {
   return (

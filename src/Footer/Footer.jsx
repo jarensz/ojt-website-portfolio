@@ -1,5 +1,5 @@
 import styles from "./Footer.module.css";
-import fbLogo from "../assets/images/facebookLogo.png";
+import githubLogo from "../assets/images/githubLogo.png";
 import gmailLogo from "../assets/images/gmailLogo.png";
 import linkedinLogo from "../assets/images/linkedinLogo.png";
 
@@ -23,12 +23,12 @@ function Footer() {
         
         <a
           className={styles.iconLink}
-          href="https://www.facebook.com/jandel.clarrence.sacdalan"
+          href="https://github.com/jarensz"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Open Facebook profile in a new tab"
         >
-          <img src={fbLogo} alt="Facebook logo" />
+          <img src={githubLogo} alt="Github logo" />
         </a>
 
         <a
